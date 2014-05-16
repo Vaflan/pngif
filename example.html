@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery PNGIF - Additional functionality</title>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="./jquery.pngif.js"></script>
+	<script>
+	$(function() {
+		$(".pngif").pngif({'frames': 8, 'position': 'right', 'delay': 250});
+		$(".fancybox").pngif({'frames': 12, 'width': 40});
+	});
+	</script>
+</head>
+<body bgcolor="#f99">
+
+	<img src="./pngif.png" class="pngif" />
+	<img src="./fancybox.png" class="fancybox" />
+	<br />
+
+</body>
+</html>
