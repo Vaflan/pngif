@@ -10,7 +10,7 @@
 
 (function($) {
 	$.fn.pngif = function(options) {
-		// Подготовка входящих параметров
+		// РџРѕРґРіРѕС‚РѕРІРєР° РІС…РѕРґСЏС‰РёС… РїР°СЂР°РјРµС‚СЂРѕРІ
 		if(typeof options === 'number' && parseFloat(options) == parseInt(options, 10) && !isNaN(options)) {
 			options = {'frames': options};
 		}
@@ -26,7 +26,7 @@
 				options['position'] = 3;
 		}
 
-		// Настройки по-умолчанию
+		// РќР°СЃС‚СЂРѕР№РєРё РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
 		var $this = $(this),
 			settings = $.extend({
 				'src': this.attr('src'),
@@ -43,7 +43,7 @@
 			}, options)
 		;
 
-		// Тут функционал PNGIF плагина
+		// РўСѓС‚ С„СѓРЅРєС†РёРѕРЅР°Р» PNGIF РїР»Р°РіРёРЅР°
 		this.css({
 			'background': 'url('+settings['src']+') 0px 0px no-repeat',
 			'height': settings['height'],
