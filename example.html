@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>jQuery PNGIF - Additional functionality</title>
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="./jquery.pngif.js"></script>
-	<script>
-	$(function() {
-		$(".pngif").pngif({'frames': 8, 'position': 'right', 'delay': 250});
-		$(".fancybox").pngif({'frames': 12, 'width': 40});
-	});
-	</script>
-</head>
-<body bgcolor="#f99">
-
-	<img src="./pngif.png" class="pngif" />
-	<img src="./fancybox.png" class="fancybox" />
-	<br />
-
-</body>
-</html>
-=======
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,19 +5,36 @@
 	<title>jQuery PNGIF - Additional functionality</title>
 	<script src="./jquery-1.10.2.js"></script>
 	<script src="./jquery.pngif.js"></script>
+	<style>
+	 body {
+		background: url('./sky.png') left top no-repeat #b1d9d8;
+		padding: 200px 120px;
+		font: 14px Arial;
+	 }
+	</style>
 	<script>
 	$(function() {
 		$(".pngif").pngif({'frames': 8, 'position': 'right', 'delay': 250});
 		$(".fancybox").pngif({'frames': 12, 'width': 40});
+		$(".psy").pngif({'frames': 27, 'position': 'right', 'delay': 130});
+		$(".psy_height").pngif({'frames': 27, 'position': 'right', 'delay': 130, 'height': 30});
 	});
 	</script>
 </head>
-<body bgcolor="#f99">
+<body>
 
-	<img src="./pngif.png" class="pngif" />
-	<img src="./fancybox.png" class="fancybox" />
+	PNGIF:<br />
+	<img src="./sprites/pngif.png" class="pngif" />
+	<br />
+	Fancybox:<br />
+	<img src="./sprites/fancybox.png" class="fancybox" />
+	<br />
+	PSY:<br />
+	<img src="./sprites/psy.png" class="psy" />
+	<br />
+	PSY height:<br />
+	<img src="./sprites/psy.png" class="psy_height" />
 	<br />
 
 </body>
 </html>
->>>>>>> 9b561af1776ec8d04fafa97f5cb40cf145a02233
