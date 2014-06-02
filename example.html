@@ -14,10 +14,11 @@
 	</style>
 	<script>
 	$(function() {
-		$(".pngif").pngif({'frames': 8, 'position': 'right', 'delay': 250});
+		$(".pngif").pngif({'frames': 8, 'position': 'left', 'delay': 250});
 		$(".fancybox").pngif({'frames': 12, 'width': 40});
 		$(".psy").pngif({'frames': 27, 'position': 'right', 'delay': 130});
-		$(".psy_height").pngif({'frames': 27, 'position': 'right', 'delay': 130, 'height': 30});
+		$(".psy_height_top1").pngif({'frames': 27, 'position': 'right', 'delay': 130, 'height': 30, 'top': -30});
+		$(".psy_height_top2").pngif({'frames': 27, 'position': 'right', 'delay': 130, 'height': 30, 'top': -92});
 	});
 	</script>
 </head>
@@ -32,8 +33,9 @@
 	PSY:<br />
 	<img src="./sprites/psy.png" class="psy" />
 	<br />
-	PSY height:<br />
-	<img src="./sprites/psy.png" class="psy_height" />
+	PSY height + top:<br />
+	<img src="./sprites/psy.png" class="psy_height_top1" />
+	<img src="./sprites/psy.png" class="psy_height_top2" />
 	<br />
 
 </body>

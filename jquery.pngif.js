@@ -1,5 +1,5 @@
 /*
- * jQuery PNGIF Plugin 1.0
+ * jQuery PNGIF Plugin 1.1 [12:03 02.06.2014]
  * https://github.com/Vaflan/pngif
  *
  * Copyright 2014, Ruslans Jermakovics
@@ -20,6 +20,10 @@
 				options['position'] = 0;
 			if(pstn.indexOf('ver')>-1 || pstn.indexOf('down')>-1)
 				options['position'] = 1;
+			if(pstn.indexOf('left')>-1)
+				options['position'] = 2;
+			if(pstn.indexOf('top')>-1)
+				options['position'] = 3;
 		}
 
 		// Настройки по-умолчанию
@@ -28,6 +32,8 @@
 				'src': this.attr('src'),
 				'height': this.height(),
 				'width': this.width(),
+				'left': 0,
+				'top': 0,
 				'position': 1,
 				'delay': 100,
 				'frames': 1,
@@ -44,7 +50,7 @@
 			'width': settings['width']
 		});
 		this.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
-		if(settings['position']) {
+		if(settings['position'] % 2) {
 			settings['fix'] = parseInt(settings['height'] / settings['frames']);
 			this.css('height', settings['fix']);
 		}
@@ -56,10 +62,19 @@
 		settings['timer'] = setInterval(function() {
 			var settings = $this.data('settings');
 			var go = settings['fix'] * settings['frame'] * -1;
-			$this.css('background-position', settings['position'] ? '0px '+go+'px' : go+'px 0px');
-			settings['frame']++;
-			if(settings['frame'] == settings['frames'])
-				settings['frame'] = 0;
+			$this.css('background-position', (settings['position']%2) ? settings['left']+'px '+go+'px' : go+'px '+settings['top']+'px');
+
+			if(settings['position'] > 1) {
+				settings['frame']--;
+				if(settings['frame'] < 0)
+					settings['frame'] = settings['frames']-1;
+			}
+			else {
+				settings['frame']++;
+				if(settings['frame'] == settings['frames'])
+					settings['frame'] = 0;
+			}
+
 			$this.data('settings', settings);
 		}, settings['delay']);
 		$this.data('settings', settings);
