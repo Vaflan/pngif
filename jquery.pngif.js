@@ -1,5 +1,5 @@
 /*
- * jQuery PNGIF Plugin 1.1 [12:03 02.06.2014]
+ * jQuery PNGIF Plugin 1.2 [21:37 01.06.2015]
  * https://github.com/Vaflan/pngif
  *
  * Copyright 2014, Ruslans Jermakovics
@@ -11,6 +11,9 @@
 (function($) {
 	$.fn.pngif = function(options) {
 		// Подготовка входящих параметров
+		if(options === undefined) {
+			options = 8;
+		}
 		if(typeof options === 'number' && parseFloat(options) == parseInt(options, 10) && !isNaN(options)) {
 			options = {'frames': options};
 		}
@@ -34,7 +37,7 @@
 				'width': this.width(),
 				'left': 0,
 				'top': 0,
-				'position': 1,
+				'position': 0,
 				'delay': 100,
 				'frames': 1,
 				'timer': 0,

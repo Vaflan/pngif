@@ -1,24 +1,34 @@
 pngif
 =====
 
-It's jQuery Plugin, Frame animation for PNG sprites.
+It's a jQuery Plugin, Frame animation for PNG sprites.
 
 Alternative for APNG, animates images.
 
-The advantage is that it is obtained as a normal image in <img> tag
+The advantage is that it is obtained as a normal image in `<img>` tag
 
 For example, you can download repository and check out example.html
+
+Default initialization does - frame 8, position: right.
+
+You can set only a number of your animate image frame.
 
 
 Example code
 =====
 
-	$(".pngif").pngif({'frames': 8});
+	$('.pngif').pngif();
+	$('.pngif').pngif({
+		frame: 12,
+		width: 40,
+		position: 'top',
+		delay: 250
+	});
 
 
 =====
 
-Where can i get free sprites?
+Where can I get free sprites?
  - http://preloaders.net/
 
 Screen: http://i.imgur.com/IWpRszb.png
