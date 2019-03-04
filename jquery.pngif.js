@@ -7,6 +7,8 @@
  */
 
 (function($) {
+	var pngifParams = {};
+
 	/** Options: frames, delay(msec), position(right, down), width(custom), height(custom)
 	 * $('img').pngif('destroy') - Destory pngif
 	 * @param {object|number|string} options
@@ -33,13 +35,13 @@
 
 		if('position' in options) {
 			var textPosition = options.position;
-			if(textPosition.indexOf('hor')>-1 || textPosition.indexOf('right')>-1)
+			if(textPosition.indexOf('hor') > -1 || textPosition.indexOf('right') > -1)
 				options.position = 0;
-			else if(textPosition.indexOf('ver')>-1 || textPosition.indexOf('down')>-1)
+			else if(textPosition.indexOf('ver') > -1 || textPosition.indexOf('down') > -1)
 				options.position = 1;
-			else if(textPosition.indexOf('left')>-1)
+			else if(textPosition.indexOf('left') > -1)
 				options.position = 2;
-			else if(textPosition.indexOf('top')>-1)
+			else if(textPosition.indexOf('top') > -1)
 				options.position = 3;
 		}
 
@@ -55,7 +57,9 @@
 			frames: 1,
 			timer: 0,
 			frame: 0,
-			fix: 0
+			fix: 0,
+			css3: false,
+			animation: null,
 		}, options);
 
 		// Тут функционал PNGIF плагина
@@ -74,9 +78,39 @@
 			$this.css('width', settings.fix);
 		}
 
+		if (settings.css3) {
+			if (typeof pngifParams.css3 === 'undefined') {
+				pngifParams.css3 = window.CSS && window.CSS.supports ?
+					CSS.supports('animation-timing-function: steps(1, end)')
+					: false;
+				if (pngifParams.css3) {
+					pngifParams.style = $('<style>').append('/** PNGIF keyframes for animation */').appendTo('head');
+				}
+			}
+			if (pngifParams.css3) {
+				settings.animation = 'pngif' + Math.floor(Math.random() * 26) + Date.now();
+				var frames = '';
+				for(var i = 0; i < settings.frames; i++) {
+					var go = settings.fix * i * -1;
+					var step = 100 / settings.frames * i;
+					if (settings.position > 1) {
+						step = 100 - step;
+					}
+					frames += step + '% {background-position: ' + (settings.position % 2
+						? settings.left + 'px ' + go + 'px'
+						: go + 'px ' + settings.top + 'px') + ';}';
+				}
+				pngifParams.style.append('@keyframes ' + settings.animation + '{' + frames + '}');
+				return $this.css('animation', settings.animation + ' ' + (settings.frames * settings.delay / 1000) + 's steps(1, end) 0s infinite');
+			}
+		}
+
 		settings.timer = setInterval(function() {
 			var go = settings.fix * settings.frame * -1;
-			$this.css('background-position', (settings.position%2) ? settings.left+'px '+go+'px' : go+'px '+settings.top+'px');
+			$this.css('background-position', settings.position % 2
+				? settings.left + 'px ' + go + 'px'
+				: go + 'px ' + settings.top + 'px'
+			);
 
 			if(settings.position > 1) {
 				settings.frame--;
