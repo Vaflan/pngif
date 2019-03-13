@@ -1,5 +1,5 @@
 /*
- * jQuery PNGIF Plugin 1.3 [21.02.2019]
+ * jQuery PNGIF Plugin 1.4 [13.03.2019]
  * https://github.com/Vaflan/pngif
  *
  * Copyright 2014, Ruslans Jermakovics
@@ -9,7 +9,7 @@
 (function($) {
 	var pngifParams = {};
 
-	/** Options: frames, delay(msec), position(right, down), width(custom), height(custom)
+	/** Options: frames, delay(msec), position(right, down), width(custom), height(custom), css3
 	 * $('img').pngif('destroy') - Destory pngif
 	 * @param {object|number|string} options
 	 * @return object jQuery
@@ -68,7 +68,7 @@
 			height: settings.height,
 			width: settings.width
 		});
-		$this.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+		$this.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 		if(settings.position % 2) {
 			settings.fix = parseInt(settings.height / settings.frames);
 			$this.css('height', settings.fix);
@@ -84,7 +84,7 @@
 					CSS.supports('animation-timing-function: steps(1, end)')
 					: false;
 				if (pngifParams.css3) {
-					pngifParams.style = $('<style>').append('/** PNGIF keyframes for animation */').appendTo('head');
+					pngifParams.style = $('<style>').append('/** PNGIF keyframes */').appendTo('head');
 				}
 			}
 			if (pngifParams.css3) {
